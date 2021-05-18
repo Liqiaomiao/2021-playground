@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import UseContextDemo from "./UseContextDemo/UseContextDemo";
+import UseCallBackDemo from "./UseCallBackDemo/index";
 ReactDOM.render(
-    <UseContextDemo/>,
+    <UseCallBackDemo/>,
     document.getElementById('root')
 )
