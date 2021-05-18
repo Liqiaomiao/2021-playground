@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 const initState = ()=>{
     console.log('initState working')
     return 0

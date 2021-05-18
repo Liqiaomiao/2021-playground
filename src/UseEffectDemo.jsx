@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useRef} from "react";
+import React,{useState,useEffect} from "react";
 /*
 * get
 * 第一个参数，为一个函数，用于编写需要执行的副作用
@@ -25,7 +25,6 @@ import React,{useState,useEffect,useRef} from "react";
 * */
 function UseEffectDemo(){
     const [resourcType,setResourcType] = useState('posts')
-    const current = useRef()
     useEffect(()=>{
         setTimeout(()=>{
             console.log('has dependence data',resourcType);

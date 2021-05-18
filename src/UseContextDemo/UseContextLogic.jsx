@@ -1,4 +1,5 @@
 import React,{useContext,useState,createContext} from 'react'
+import PropTypes from 'prop-types'
 const ThemeContext = createContext()
 const UpdateThemeContext = createContext()
 export function useTheme(){
@@ -8,6 +9,7 @@ export function useTheme(){
 export function useUpdateTheme(){
     return useContext(UpdateThemeContext)
 }
+
 export default function UseContextLogic({children}){
     const [theme, setTheme] = useState('dark')
     const handleSetTheme = () => {
@@ -21,3 +23,4 @@ export default function UseContextLogic({children}){
         </ThemeContext.Provider>
     )
 }
+UseContextLogic.propTypes = { children: PropTypes.node.isRequired };
