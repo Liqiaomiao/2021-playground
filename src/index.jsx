@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import UseCallBackDemo from "./UseCallBackDemo/index";
+import UseMemoDemo from "./UseMemoDemo";
 ReactDOM.render(
-    <UseCallBackDemo/>,
+    <UseMemoDemo/>,
     document.getElementById('root')
 )
