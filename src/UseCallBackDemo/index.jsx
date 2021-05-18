@@ -22,7 +22,7 @@ export default function UseCallBackDemo(){
             }/>
             <button onClick={()=>setTheme(prev=>prev==='dark'?'light':'dark')}>Toggle Theme</button>
             {
-                <List getItems={getItemsMemo}/>
+                <List getItems={getItems}/>
             }
         </div>
     )
