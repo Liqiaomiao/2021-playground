@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import UseMemoDemo from "./UseMemoDemo";
+import UseReducerDemo from "./UseReducerDemo";
 ReactDOM.render(
-    <UseMemoDemo/>,
+    <UseReducerDemo/>,
     document.getElementById('root')
 )
