@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import UseReducerDemo from "./UseReducerDemo";
+import TodoLists from "./UseReducerDemo/TodoLists";
 ReactDOM.render(
-    <UseReducerDemo/>,
+    <TodoLists/>,
     document.getElementById('root')
 )
