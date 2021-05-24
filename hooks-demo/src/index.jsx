@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import CaptureValueDemo from "./funCapturePropDemo/index";
+import MessageThread from "./hooksCaptureValueDemo/index";
 ReactDOM.render(
-    <CaptureValueDemo/>,
+    <MessageThread/>,
     document.getElementById('root')
 )
