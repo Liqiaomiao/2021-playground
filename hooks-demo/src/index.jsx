@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
-import TodoLists from "./UseReducerDemo/TodoLists";
+import CaptureValueDemo from "./captureValueDemo/index";
 ReactDOM.render(
-    <TodoLists/>,
+    <CaptureValueDemo/>,
     document.getElementById('root')
 )
