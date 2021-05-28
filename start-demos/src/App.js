@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import './App.css';
 import ErrorBoundary from './components/ErrorBoundary'
-import Modal from './components/Modal/index'
+import Modal from './components/Modal-portal/index'
 
 function Profile(props) {
     return (
