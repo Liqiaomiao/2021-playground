@@ -1,26 +1,33 @@
 import {useState} from 'react'
 import './App.css';
 import ErrorBoundary from './components/ErrorBoundary'
-function Profile(props){
+import Modal from './components/Modal/index'
+
+function Profile(props) {
     return (
-        <div>
+        <>
             {props.user.name}
-        </div>
+        </>
     )
 }
+
 function App() {
     const [user, setUser] = useState({
         name: 'dog'
     })
-
+    const [modalVisible, setModalVisible] = useState(true)
     return (
         <div className='App'>
             <ErrorBoundary>
-                <div>
+                <div className='user-container'>
                     <Profile user={user}></Profile>
+                    <button onClick={() => setUser(null)}>click</button>
                 </div>
+                {
+                    modalVisible && <Modal onClose={()=>setModalVisible(false)}>hello modal</Modal>
+                }
             </ErrorBoundary>
-            <button onClick={()=>setUser(null)}>click</button>
+
         </div>
     );
 }
