@@ -1,16 +1,9 @@
 import React,{useState} from "react";
 import ReactDOM from 'react-dom'
-import UseEffectDemo from "./UseEffectDemo/index";
+import CustomHooksDemo from "./CustomHooksDemo/index.jsx";
 function App(){
-    const [num,setNum] = useState(0)
-    const obj={
-        name:'lisa'
-    }
-    setTimeout(()=>{
-       // obj.name='jack'+num
-    },1000)
     return (
-        <UseEffectDemo obj={obj}/>
+        <CustomHooksDemo/>
     )
 }
 
