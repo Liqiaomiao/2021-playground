@@ -1,9 +1,9 @@
 import React,{useState} from "react";
 import ReactDOM from 'react-dom'
-import CustomHooksDemo from "./CustomHooksDemo/index.jsx";
+import UseAsyncDemo from "./CustomHooksDemo/useAsync/index.jsx";
 function App(){
     return (
-        <CustomHooksDemo/>
+        <UseAsyncDemo/>
     )
 }
 
