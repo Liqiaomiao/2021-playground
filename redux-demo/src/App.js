@@ -1,13 +1,21 @@
 import React from 'react';
-import Todos from './features/todos/index.jsx'
+import {useSelector,useDispatch} from 'react-redux'
+
 import './App.css';
 
+
+
 function App() {
+    const count = useSelector(state=> state.counter).count
+    const dispatch = useDispatch()
     return (
         <div className='App'>
-            <header className='App-header'>
-                <Todos/>
-            </header>
+            {count}
+            <button onClick={()=>{
+                dispatch({
+                    type:'counter/firstAction'
+                })
+            }}>+</button>
         </div>
     );
 }

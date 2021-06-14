@@ -14,6 +14,24 @@ export const counterSlice = createSlice({
         },
         incrementByAmount: (state, action) => {
             state.count += action.payload
+        },
+        secondAction : (data) => ({
+            type: 'SECOND',
+            payload: 'hi',
+        }),
+
+        firstAction : () => {
+            debugger
+            return (dispatch) => {
+                const response = dispatch({
+                    type: 'FIRST',
+                    payload: new Promise((resolve,reject)=>{resolve('1')}),
+                })
+                console.log('response',response);
+                response.then((data) => {
+                    dispatch(this.secondAction(data))
+                })
+            }
         }
     }
 })
