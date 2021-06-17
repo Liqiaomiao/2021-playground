@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{Component,useState} from 'react'
  /*
  * 错误边界是一种react组件
  * 1.可捕获发生在其子组件树任何位置的javascript错误
@@ -9,6 +9,13 @@ import React,{Component} from 'react'
  * 3.自身抛出来的错误
  * 4.事件处理
  * */
+function Profile(props) {
+    return (
+        <>
+            {props.user.name}
+        </>
+    )
+}
 class ErrorBoundary extends Component{
     constructor(props) {
         super(props)
@@ -32,4 +39,17 @@ class ErrorBoundary extends Component{
         return this.props.children
     }
 }
-export default ErrorBoundary
+function ParentComponent(){
+    const [user, setUser] = useState({
+        name: 'dog'
+    })
+    return (
+        <ErrorBoundary>
+            <div className='user-container'>
+                <Profile user={user}></Profile>
+                <button onClick={() => setUser(null)}>click</button>
+            </div>
+        </ErrorBoundary>
+    )
+}
+export default ParentComponent
