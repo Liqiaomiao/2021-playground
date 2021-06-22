@@ -1,7 +1,8 @@
 import {useState, useRef, useEffect, forwardRef} from 'react'
 import Lifecycle15 from "./components/lifecycle/lifecycle15";
 import Lifecycle16 from "./components/lifecycle/lifecycle16";
-import ErrorBoundary from './components/ErrorBoundary'
+import ErrorBoundary from './components/ErrorBoundary';
+import RouteIndex from './components/RouterDemo/index'
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -9,8 +10,6 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-
-
 function App() {
     const [user, setUser] = useState({
         name: 'dog'
@@ -34,6 +33,21 @@ function App() {
                     <li>
                         <Link to='/error-boundary'>ErrorBoundary</Link>
                     </li>
+                    <li>
+                        <Link to='/'>index</Link>
+                        <ul>
+                            <li>
+                                <Link to='/temp1'>temp1</Link>
+                            </li>
+                            <li>
+                                <Link to='/temp2'>temp2</Link>
+                            </li>
+                            <li>
+                                <Link to='/temp3'>temp3</Link>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
             <Switch>
@@ -46,6 +60,7 @@ function App() {
                 <Route path="/error-boundary">
                     <ErrorBoundary />
                 </Route>
+                <Route path="/" component={RouteIndex}></Route>
             </Switch>
         </Router>
 
