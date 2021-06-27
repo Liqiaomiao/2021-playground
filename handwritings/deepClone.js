@@ -1,21 +1,130 @@
-function deepClone(obj, hash = new WeakMap()) {
-    if (obj === null) return obj; // 如果是null或者undefined我就不进行拷贝操作
-    if (obj instanceof Date) return new Date(obj);
-    if (obj instanceof RegExp) return new RegExp(obj);
-    // 可能是对象或者普通的值  如果是函数的话是不需要深拷贝
-    if (typeof obj !== "object") return obj;
-    // 是对象的话就要进行深拷贝
-    if (hash.get(obj)) return hash.get(obj);
-    let cloneObj = new obj.constructor();
-    // 找到的是所属类原型上的constructor,而原型上的 constructor指向的是当前类本身
-    hash.set(obj, cloneObj);
-    for (let key of Reflect.ownKeys(obj)) {
-        cloneObj[key] = deepClone(obj[key], hash);
-    }
-    return cloneObj;
+// 递归、WeakMap循环引用、多种类型，参考 https://juejin.cn/post/6844903929705136141
+
+// 可以继续遍历的类型
+const mapTag = '[object Map]'
+const setTag = '[object Set]'
+const arrayTag = '[object Array]'
+const objectTag = '[object Object]'
+
+const deepTag = [mapTag, setTag, arrayTag, objectTag]
+// 不可以继续遍历的类型
+const booleanTag = '[object Boolean]'
+const dateTag = '[object Date]'
+const errrorTag = '[object Error]'
+const numberTag = '[object Number]'
+const regexpTag = '[object RegExp]'
+const stringTag = '[object String]'
+const symbolTag = '[object Symbol]'
+const funcTag = '[object Function]'
+
+function isObject(target) {
+    const type = typeof target
+    return (target !== null) && (type === 'object' || type === 'function')
 }
-let obj = { name: 1, address: { x: 100 },a:undefined,[Symbol()]:'hello' };
-obj.o = obj; // 对象存在循环引用的情况
-let d = deepClone(obj);
-obj.address.x = 200;
-console.log(d);
+
+function getType(target) {
+    return Object.prototype.toString.call(target)
+}
+
+function getInit(target) {
+    const Ctor = target.constructor
+    return new Ctor(target)
+}
+
+function cloneSymbol(target) {
+    return Object(Symbol.prototype.valueOf.call(target))
+}
+
+function cloneOtherType(target, type) {
+    const Ctor = target.constructor
+    switch (type) {
+        case booleanTag:
+        case numberTag:
+        case stringTag:
+        case errrorTag:
+        case dateTag:
+            return new Ctor(target);
+        case regexpTag:
+            return new RegExp(target);
+        case symbolTag:
+            return cloneSymbol(target);
+        case funcTag:
+            return target;
+        default:
+            return null;
+    }
+
+}
+
+function clone(target, map = new WeakMap()) {
+    if (!isObject(target)) {
+        return target
+    } // 直接返回原始类型
+    const type = getType(target)
+    let cloneTarget;
+    if (deepTag.includes(type)) { // 可以继续遍历的类型
+        cloneTarget = getInit(target)
+    } else {
+        return cloneOtherType(target,type)
+    }
+    if(map.get(target)){
+        return map.get(target)
+    }
+    // 循环引用
+    map.set(target,cloneTarget)
+    // clone Map
+    if(type === mapTag){
+        target.forEach((item,key)=>cloneTarget.set(key,clone(item,map)))
+        return cloneTarget
+    }
+    // clone Set
+    if(type === setTag){
+        target.forEach((item,key)=>cloneTarget.add(clone(item,map)))
+        return cloneTarget
+    }
+
+    // clone array & object
+    cloneTarget = type === arrayTag?[]:{}
+    for (const key in target) {
+        cloneTarget[key] = clone(target[key]);
+    }
+    return cloneTarget;
+}
+
+const map = new Map();
+map.set('key', 'value');
+map.set('ConardLi', 'code秘密花园');
+
+const set = new Set();
+set.add('ConardLi');
+set.add('code秘密花园');
+Object(Symbol('hi'))
+const target = {
+    field1: 1,
+    field2: undefined,
+    field3: {
+        child: 'child'
+    },
+    field4: [2, 4, 8],
+    empty: null,
+    map,
+    set,
+    bool: new Boolean(true),
+    num: new Number(2),
+    str: new String(2),
+    symbol: Object(Symbol(1)),
+    date: new Date(),
+    reg: /\d+/,
+    error: new Error(),
+    func1: () => {
+        console.log('code秘密花园');
+    },
+    func2: function (a, b) {
+        return a + b;
+    }
+};
+
+
+const result = clone(target);
+
+console.log('result', result);
