@@ -5,6 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import NiceModalExample from './components/NiceMoal/NiceModalExample'
 import NiceModalUserInfo from './components/NiceMoal/UsersLayout'
 import MyRouter from "./components/RouterDemo/MyRouter";
+import NestedRouting from './components/RouterDemo/NestedRouting'
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -34,20 +35,11 @@ function App() {
                         <Link to='/NiceModalUserInfo'>NiceModalUserInfo</Link>
                     </li>
                     <li>
-                        <Link to='/'>index</Link>
-                        <ul>
-                            <li>
-                                <Link to='/temp1'>temp1</Link>
-                            </li>
-                            <li>
-                                <Link to='/temp2'>temp2</Link>
-                            </li>
-                            <li>
-                                <Link to='/temp3'>temp3</Link>
-                            </li>
-                        </ul>
+                        <Link to='/MyRouter'>MyRouter</Link>
                     </li>
-
+                    <li>
+                        <Link to='/NestedRouting'>NestedRouting</Link>
+                    </li>
                 </ul>
             </nav>
             <Switch>
@@ -66,8 +58,10 @@ function App() {
                 <Route path='/NiceModalUserInfo'>
                     <NiceModalUserInfo/>
                 </Route>
-                <Route path="/" component={MyRouter}></Route>
-
+                <Route path="/MyRouter" component={MyRouter}></Route>
+                <Route path='/NestedRouting'>
+                    <NestedRouting/>
+                </Route>
             </Switch>
         </Router>
 

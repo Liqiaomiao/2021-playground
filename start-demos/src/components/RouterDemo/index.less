@@ -14,3 +14,24 @@
     padding: 20px;
   }
 }
+.nested-routing{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  margin: 30px;
+  .nested-routing-sider{
+    background-color: #f0f0f0;
+    padding: 20px;
+    a{display: block}
+  }
+  .nested-routing-container{
+    padding: 20px;
+    .nested-routing-container-page1-tab{
+      border-bottom: 1px solid #ddd;
+      a{
+        display: inline-block;
+        padding: 10px;
+        margin-right: 50px;
+      }
+    }
+  }
+}
