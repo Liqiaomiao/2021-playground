@@ -2,9 +2,9 @@ import {useState, useRef, useEffect, forwardRef} from 'react'
 import Lifecycle15 from "./components/lifecycle/lifecycle15";
 import Lifecycle16 from "./components/lifecycle/lifecycle16";
 import ErrorBoundary from './components/ErrorBoundary';
-import RouteIndex from './components/RouterDemo/NestingExample'
 import NiceModalExample from './components/NiceMoal/NiceModalExample'
 import NiceModalUserInfo from './components/NiceMoal/UsersLayout'
+import MyRouter from "./components/RouterDemo/MyRouter";
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -66,7 +66,7 @@ function App() {
                 <Route path='/NiceModalUserInfo'>
                     <NiceModalUserInfo/>
                 </Route>
-                <Route path="/" component={RouteIndex}></Route>
+                <Route path="/" component={MyRouter}></Route>
 
             </Switch>
         </Router>
