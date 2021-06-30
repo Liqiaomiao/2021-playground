@@ -6,6 +6,7 @@ import NiceModalExample from './components/NiceMoal/NiceModalExample'
 import NiceModalUserInfo from './components/NiceMoal/UsersLayout'
 import MyRouter from "./components/RouterDemo/MyRouter";
 import NestedRouting from './components/RouterDemo/NestedRouting'
+import Tabspage from './components/RouterDemo/Tabspage'
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -40,6 +41,9 @@ function App() {
                     <li>
                         <Link to='/NestedRouting'>NestedRouting</Link>
                     </li>
+                    <li>
+                        <Link to='/Tabspage'>Tabspage</Link>
+                    </li>
                 </ul>
             </nav>
             <Switch>
@@ -61,6 +65,9 @@ function App() {
                 <Route path="/MyRouter" component={MyRouter}></Route>
                 <Route path='/NestedRouting'>
                     <NestedRouting/>
+                </Route>
+                <Route path='/Tabspage/:activeTab?'>
+                    <Tabspage/>
                 </Route>
             </Switch>
         </Router>
