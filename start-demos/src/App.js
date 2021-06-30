@@ -7,6 +7,7 @@ import NiceModalUserInfo from './components/NiceMoal/UsersLayout'
 import MyRouter from "./components/RouterDemo/MyRouter";
 import NestedRouting from './components/RouterDemo/NestedRouting'
 import Tabspage from './components/RouterDemo/Tabspage'
+import RouterAuth from './components/RouterDemo/RouterAuth'
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -44,6 +45,9 @@ function App() {
                     <li>
                         <Link to='/Tabspage'>Tabspage</Link>
                     </li>
+                    <li>
+                        <Link to='/RouterAuth'>RouterAuth</Link>
+                    </li>
                 </ul>
             </nav>
             <Switch>
@@ -68,6 +72,9 @@ function App() {
                 </Route>
                 <Route path='/Tabspage/:activeTab?'>
                     <Tabspage/>
+                </Route>
+                <Route path='/RouterAuth'>
+                    <RouterAuth/>
                 </Route>
             </Switch>
         </Router>
